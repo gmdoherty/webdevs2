@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>George & Liam</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="css/clean-blog.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<style>
+    .top {
+        color: #7777;
+        font-size: 35px;
+        font-family: 'Helvetica Neue';
+    }
+</style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <p class = "top">George & Liam</p>
+            </div>
+                
+
+           
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('citySeal.png')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        
+                       <div id="form">
+            <br>
+            <p><b><font color="white">Search For Your Police Station!</b></font></p>
+            
+        <input id="District" type="text"  placeholder="District Name(i.e Central)"></input>
+        <button type="button" id="btnSearch" >Search!</button>
+    </div>
+    <h2></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-preview">
+
+                        <h2 id="results">
+                            Liam Varner George Doherty. This website returns data from the city of Chicago Data Portal on police stations and in the different districts of Chicago.
+                             Our filter relies on a filter that uses district names.
+                        </h2>
+                </div>
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    <li class="next">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; George & Liam</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js">
+        $("navbar-brand").css("color: #777777;");
+    </script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/clean-blog.min.js"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+     <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    
+    <script>
+        
+        
+       
+        $(function () {    
+
+            
+            var baseURL = 'https://data.cityofchicago.org/resource/9rg7-mz9y.json';
+            
+            
+            var filters = '?district_name=';
+            
+            var url = baseURL + filters; 
+            
+            console.log (url);
+            
+            
+            $("#btnSearch").attr("disabled", true);
+            
+           
+            $("#District").keyup(function(){   
+                if ($("#District").val() == "") {   
+                    $("#btnSearch").attr("disabled", true)  
+                }
+                else {
+                    $("#btnSearch").attr("disabled", false)
+                }
+            })
+            
+            
+            
+         
+           
+           
+            $("#btnSearch").on("click", function() {
+                
+                
+                $("#results").html("");
+                
+                
+                var districtNum = $("#District").val();
+           
+                var urlWithParams = url + districtNum;
+                console.log(urlWithParams);  
+           
+               
+                
+                $.getJSON(urlWithParams)       
+                    .done (function (data) {    
+                        
+                        console.log(data);
+                        
+                        var numResults = data.length;  
+                        
+                        
+                        var message = 
+                            "<p>Results found: "
+                            + numResults
+                            + "</p>"
+                        
+                        $("#results").append(message);
+                        
+                        
+                        
+                        if (numResults > 0) {
+                            
+                            $.each (data , 
+                                function (index, value) {
+                                    
+                                    var url = value.website;
+                                    var html = "<h2>" 
+                                        +"District Number of Police Station: "
+                                        + value.district + "<br>"
+                                        +"Name of District: "
+                                        + value.district_name
+                                        + "</h2>"
+                                        +"<hr>"
+                                        + "<p>" 
+                                        + "Address of Police Station: "
+                                        + value.address
+                                        + "<br>"
+                                        +"<hr>"
+                                        + "City: "
+                                        + value.city
+                                        +"<hr>"
+                                        + "<br>State: "
+                                        + value.state
+                                        +"<hr>"
+                                        + "<br>Zip Code of Station: "
+                                        + value.zip + "<br>"
+                                        +"<hr>"
+                                        +"<br>"
+                                        +"Website of This Police Station: "
+                                        
+                                        + "</p>";
+                                   
+                                   
+                                    $("#results").html(html);
+                                    $("#results").append('<a href='+url+' rel="external" data-direction="reverse">'+url+'</a>');
+                                        
+                            
+                                
+                                } 
+                            
+                            );                            
+                        
+                        }
+
+                    }) 
+            
+            }) 
+        
+        }) 
+     
+      
+      
+    </script>
+        
+    
+
+</body>
+
+</html>
