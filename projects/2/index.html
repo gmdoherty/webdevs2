@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  
+<style> 
+#bar {
+  padding-left: 35px;
+  
+}
+
+</style>
+  
+  <meta charset="utf-8">
+  <title>jQuery.parseXML demo</title>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <!-- Material Design Lite -->
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <!-- Material Design icon font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </head>
+
+<body>
+  
+  <!-- Always shows a header, even in smaller screens. -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">Bus Tracker</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation. We hide it in small screens. -->
+      <nav class="mdl-navigation mdl-layout--large-screen-only">
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+      </nav>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Bus Tracker</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" href="">Link</a>
+    </nav>
+  </div>
+  
+    
+    <br>
+
+  <main id= "bar" class="mdl-layout__content">
+    <div class="page-content"><select id = "dropDown">
+  <option value="8417">Western (Northbound)</option>
+  <option value="8195">Western (Southbound)</option>
+  <option value="12527">Addison (Eastbound)</option>
+  <option value="12569">Addison (Westbound)</option>
+</select>
+  
+  
+  <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onclick = "myFunction()">
+  Bus Finder
+</button>
+
+     <center><div id = "page"></div></div></center>
+  </main>
+</div>
+  
+  
+ 
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script>
+      
+      function myFunction() {
+        
+      
+        $(function() {
+          
+          $("#page").html("")
+          
+          var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+          
+          var apiEndpoint = "http://ctabustracker.com/bustime/api/v2/getpredictions";
+          
+          
+          $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": apiEndpoint,
+                      "key" : "JbMKkXPcFYcX2tiyyFigkzTyV",
+                      "stpid" : $("#dropDown").val(),
+                      
+                      "format":"json"}
+            }).done (function (data) {
+              console.log(data);
+              $("#page").append("<h1>Bus Route Times</h1>");
+             
+              $.each(data["bustime-response"]["prd"], function(i,v) {
+                  $("#page").append( v.stpnm + ": " + v.prdctdn + " Minutes" + "<br>");
+                
+              });
+
+            });
+        });
+      }
+  
+</script>
+ 
+</body>
+</html>
